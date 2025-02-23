@@ -5,4 +5,4 @@
 # File:__init__.py
 from module.resources import res_rc
 
-__version__ = '0.3'
+__version__ = '0.4'
