@@ -4,6 +4,7 @@
 # Time:2025/2/23 12:15
 # File:main.py
 import sys
+import ctypes
 import subprocess
 import traceback
 import threading
@@ -15,7 +16,7 @@ from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
 
 from module.ui import *
-from module.black_mode import restore_mode, night_mode
+from module.black_mode import restore_mode, night_mode, toggle_taskbar, special_hide_taskbar, show_taskbar
 
 
 class MainWindow(QMainWindow):
