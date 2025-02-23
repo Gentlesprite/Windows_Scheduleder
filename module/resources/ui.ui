@@ -436,10 +436,38 @@ padding-left:7px;}</string>
     <string notr="true">color:rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>夜晚模式</string>
+    <string>夜间模式</string>
    </property>
    <property name="checked">
-    <bool>false</bool>
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_show_taskbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>150</y>
+     <width>121</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>显示任务栏</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
    </property>
   </widget>
   <zorder>bkgd</zorder>
@@ -455,6 +483,7 @@ padding-left:7px;}</string>
   <zorder>checkBox_auto_keep_top</zorder>
   <zorder>checkBox_close_windows_tips</zorder>
   <zorder>checkBox_night_mode</zorder>
+  <zorder>checkBox_show_taskbar</zorder>
  </widget>
  <resources>
   <include location="res.qrc"/>

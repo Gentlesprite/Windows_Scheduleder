@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'windowsjznfuf.ui'
+## Form generated from reading UI file 'windowsqUObml.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -45,13 +45,13 @@ class Ui_Form(object):
         font1.setWeight(50)
         self.button_shutdwon.setFont(font1)
         self.button_shutdwon.setStyleSheet(u"QPushButton{\n"
-"background-color: rgb(111, 111, 111);\n"
-"border-radius:15px; \n"
-"color:rgb(0, 0, 0);}\n"
-"QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(130, 130, 130, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QPushButton:pressed{padding-top:7px;\n"
-"padding-left:7px;}")
+                                           "background-color: rgb(111, 111, 111);\n"
+                                           "border-radius:15px; \n"
+                                           "color:rgb(0, 0, 0);}\n"
+                                           "QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(130, 130, 130, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                           "}\n"
+                                           "QPushButton:pressed{padding-top:7px;\n"
+                                           "padding-left:7px;}")
         self.label_2 = QLabel(Form)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(40, 50, 191, 91))
@@ -63,11 +63,12 @@ class Ui_Form(object):
         self.bkgd = QLabel(Form)
         self.bkgd.setObjectName(u"bkgd")
         self.bkgd.setGeometry(QRect(0, 0, 431, 271))
-        self.bkgd.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 255));\n"
-"border-top-right-radius: 25px;\n"
-"border-bottom-right-radius: 25px;\n"
-"border-top-left-radius: 25px;\n"
-"border-bottom-left-radius: 25px")
+        self.bkgd.setStyleSheet(
+            u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 255));\n"
+            "border-top-right-radius: 25px;\n"
+            "border-bottom-right-radius: 25px;\n"
+            "border-top-left-radius: 25px;\n"
+            "border-bottom-left-radius: 25px")
         self.bkgd.setFrameShape(QFrame.StyledPanel)
         self.button_mini = QPushButton(Form)
         self.button_mini.setObjectName(u"button_mini")
@@ -77,13 +78,13 @@ class Ui_Form(object):
         font2.setPointSize(13)
         self.button_mini.setFont(font2)
         self.button_mini.setStyleSheet(u"QPushButton{\n"
-"background-color: rgb(0, 255, 0);\n"
-"border-radius:15px; \n"
-"color:rgb(0, 0, 0);}\n"
-"QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(16, 136, 47, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QPushButton:pressed{padding-top:7px;\n"
-"padding-left:7px;}")
+                                       "background-color: rgb(0, 255, 0);\n"
+                                       "border-radius:15px; \n"
+                                       "color:rgb(0, 0, 0);}\n"
+                                       "QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(16, 136, 47, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                       "}\n"
+                                       "QPushButton:pressed{padding-top:7px;\n"
+                                       "padding-left:7px;}")
         self.button_quit = QPushButton(Form)
         self.button_quit.setObjectName(u"button_quit")
         self.button_quit.setGeometry(QRect(380, 10, 41, 41))
@@ -92,13 +93,13 @@ class Ui_Form(object):
         font3.setPointSize(9)
         self.button_quit.setFont(font3)
         self.button_quit.setStyleSheet(u"QPushButton{\n"
-"background-color: rgb(255, 0 , 0);\n"
-"border-radius:15px; \n"
-"color:rgb(0, 0, 0);}\n"
-"QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QPushButton:pressed{padding-top:7px;\n"
-"padding-left:7px;}")
+                                       "background-color: rgb(255, 0 , 0);\n"
+                                       "border-radius:15px; \n"
+                                       "color:rgb(0, 0, 0);}\n"
+                                       "QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                       "}\n"
+                                       "QPushButton:pressed{padding-top:7px;\n"
+                                       "padding-left:7px;}")
         self.button_cancel_shutdown = QPushButton(Form)
         self.button_cancel_shutdown.setObjectName(u"button_cancel_shutdown")
         self.button_cancel_shutdown.setGeometry(QRect(230, 180, 151, 71))
@@ -112,13 +113,13 @@ class Ui_Form(object):
         font4.setWeight(50)
         self.button_cancel_shutdown.setFont(font4)
         self.button_cancel_shutdown.setStyleSheet(u"QPushButton{\n"
-"background-color: rgb(111, 111, 111);\n"
-"border-radius:15px; \n"
-"color:rgb(0, 0, 0);}\n"
-"QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(130, 130, 130, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QPushButton:pressed{padding-top:7px;\n"
-"padding-left:7px;}")
+                                                  "background-color: rgb(111, 111, 111);\n"
+                                                  "border-radius:15px; \n"
+                                                  "color:rgb(0, 0, 0);}\n"
+                                                  "QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(130, 130, 130, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                                  "}\n"
+                                                  "QPushButton:pressed{padding-top:7px;\n"
+                                                  "padding-left:7px;}")
         self.spinBox = QSpinBox(Form)
         self.spinBox.setObjectName(u"spinBox")
         self.spinBox.setGeometry(QRect(210, 70, 91, 51))
@@ -127,21 +128,21 @@ class Ui_Form(object):
         font5.setPointSize(20)
         self.spinBox.setFont(font5)
         self.spinBox.setStyleSheet(u"\n"
-"QSpinBox\n"
-"{\n"
-"	border:1px solid #242424;\n"
-"border-radius:15px; \n"
-"background-color: rgb(111, 111, 111);\n"
-"}\n"
-" \n"
-"QSpinBox::up-button,QDoubleSpinBox::down-button::QDoubleSpinBox::vaule\n"
-"{\n"
-"	width:0px;\n"
-"	vaule:none;\n"
-"}\n"
-"QSpinBox::up-button, QSpinBox::down-button {\n"
-"    width: 0px;\n"
-"}")
+                                   "QSpinBox\n"
+                                   "{\n"
+                                   "	border:1px solid #242424;\n"
+                                   "border-radius:15px; \n"
+                                   "background-color: rgb(111, 111, 111);\n"
+                                   "}\n"
+                                   " \n"
+                                   "QSpinBox::up-button,QDoubleSpinBox::down-button::QDoubleSpinBox::vaule\n"
+                                   "{\n"
+                                   "	width:0px;\n"
+                                   "	vaule:none;\n"
+                                   "}\n"
+                                   "QSpinBox::up-button, QSpinBox::down-button {\n"
+                                   "    width: 0px;\n"
+                                   "}")
         self.spinBox.setMaximum(9999)
         self.spinBox.setStepType(QAbstractSpinBox.DefaultStepType)
         self.spinBox.setValue(240)
@@ -153,11 +154,11 @@ class Ui_Form(object):
         self.comboBox.setGeometry(QRect(310, 70, 71, 51))
         self.comboBox.setFont(font5)
         self.comboBox.setStyleSheet(u"QComboBox {\n"
-"    border: 1px solid #242424;\n"
-"    border-radius: 15px;\n"
-"    background-color: rgb(111, 111, 111);\n"
-"}\n"
-"")
+                                    "    border: 1px solid #242424;\n"
+                                    "    border-radius: 15px;\n"
+                                    "    background-color: rgb(111, 111, 111);\n"
+                                    "}\n"
+                                    "")
         self.label = QLabel(Form)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(10, 0, 271, 91))
@@ -171,13 +172,13 @@ class Ui_Form(object):
         self.button_keep_top.setGeometry(QRect(280, 10, 41, 41))
         self.button_keep_top.setFont(font2)
         self.button_keep_top.setStyleSheet(u"QPushButton{\n"
-"background-color: rgb(255, 255, 0);\n"
-"border-radius:15px; \n"
-"color:rgb(0, 0, 0);}\n"
-"QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"QPushButton:pressed{padding-top:7px;\n"
-"padding-left:7px;}")
+                                           "background-color: rgb(255, 255, 0);\n"
+                                           "border-radius:15px; \n"
+                                           "color:rgb(0, 0, 0);}\n"
+                                           "QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 0, 255), stop:1 rgba(255, 255, 255, 255));\n"
+                                           "}\n"
+                                           "QPushButton:pressed{padding-top:7px;\n"
+                                           "padding-left:7px;}")
         self.checkBox_auto_keep_top = QCheckBox(Form)
         self.checkBox_auto_keep_top.setObjectName(u"checkBox_auto_keep_top")
         self.checkBox_auto_keep_top.setEnabled(True)
@@ -200,7 +201,14 @@ class Ui_Form(object):
         self.checkBox_night_mode.setGeometry(QRect(100, 130, 121, 16))
         self.checkBox_night_mode.setFont(font7)
         self.checkBox_night_mode.setStyleSheet(u"color:rgb(255, 255, 255);")
-        self.checkBox_night_mode.setChecked(False)
+        self.checkBox_night_mode.setChecked(True)
+        self.checkBox_show_taskbar = QCheckBox(Form)
+        self.checkBox_show_taskbar.setObjectName(u"checkBox_show_taskbar")
+        self.checkBox_show_taskbar.setEnabled(True)
+        self.checkBox_show_taskbar.setGeometry(QRect(100, 150, 121, 16))
+        self.checkBox_show_taskbar.setFont(font7)
+        self.checkBox_show_taskbar.setStyleSheet(u"color:rgb(255, 255, 255);")
+        self.checkBox_show_taskbar.setChecked(True)
         self.bkgd.raise_()
         self.button_shutdwon.raise_()
         self.label_2.raise_()
@@ -214,10 +222,12 @@ class Ui_Form(object):
         self.checkBox_auto_keep_top.raise_()
         self.checkBox_close_windows_tips.raise_()
         self.checkBox_night_mode.raise_()
+        self.checkBox_show_taskbar.raise_()
 
         self.retranslateUi(Form)
 
         QMetaObject.connectSlotsByName(Form)
+
     # setupUi
 
     def retranslateUi(self, Form):
@@ -234,8 +244,10 @@ class Ui_Form(object):
 
         self.label.setText("")
         self.button_keep_top.setText(QCoreApplication.translate("Form", u"\u2659", None))
-        self.checkBox_auto_keep_top.setText(QCoreApplication.translate("Form", u"\u79fb\u81f3\u53f3\u4e0a\u7f6e\u9876", None))
-        self.checkBox_close_windows_tips.setText(QCoreApplication.translate("Form", u"\u5173\u95ed\u5f39\u7a97\u63d0\u793a", None))
-        self.checkBox_night_mode.setText(QCoreApplication.translate("Form", u"\u591c\u665a\u6a21\u5f0f", None))
+        self.checkBox_auto_keep_top.setText(
+            QCoreApplication.translate("Form", u"\u79fb\u81f3\u53f3\u4e0a\u7f6e\u9876", None))
+        self.checkBox_close_windows_tips.setText(
+            QCoreApplication.translate("Form", u"\u5173\u95ed\u5f39\u7a97\u63d0\u793a", None))
+        self.checkBox_night_mode.setText(QCoreApplication.translate("Form", u"\u591c\u95f4\u6a21\u5f0f", None))
+        self.checkBox_show_taskbar.setText(QCoreApplication.translate("Form", u"\u663e\u793a\u4efb\u52a1\u680f", None))
     # retranslateUi
-

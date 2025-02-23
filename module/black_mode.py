@@ -2,9 +2,13 @@ import ctypes
 import os
 import win32api
 import win32con
+import win32gui
+from PySide2 import QtWidgets
+
+taskbar_status = True  # 初始状态为显示任务栏
 
 
-def WallpaperFun(mode):
+def wallpaper_functions(mode):
     global wallpaper_path
 
     # 获取当前用户的个人文件夹路径
@@ -49,7 +53,7 @@ def WallpaperFun(mode):
             print("未找到保存的壁纸路径，请先保存当前桌面壁纸！")
 
 
-def SetBlackWallpaper():
+def set_black_wallpaper():
     # 定义 SPI_SETDESKWALLPAPER 常量
     SPI_SETDESKWALLPAPER = 20
     # 设置黑色背景颜色值（请注意顺序：红、绿、蓝）
@@ -59,16 +63,83 @@ def SetBlackWallpaper():
     print("桌面背景已切换为黑色")
 
 
-def BlackMode():
-    WallpaperFun('save')
-    SetBlackWallpaper()
+def show_taskbar_rec(main_window):
+    global taskbar_status
+    # 获取任务栏窗口的句柄
+    taskbar_hwnd = win32gui.FindWindow("Shell_traywnd", None)
+
+    # 恢复任务栏
+    win32gui.ShowWindow(taskbar_hwnd, win32con.SW_SHOW)
+    taskbar_status = True  # 标记为显示任务栏
+    main_window.ui.checkBox_show_taskbar.setChecked(taskbar_status)
 
 
-def RestoreMode():
+def hide_taskbar_rec(main_window):
+    global taskbar_status
+
+    # 获取任务栏窗口的句柄
+    taskbar_hwnd = win32gui.FindWindow("Shell_traywnd", None)
+
+    # 隐藏任务栏
+    win32gui.ShowWindow(taskbar_hwnd, win32con.SW_HIDE)
+    taskbar_status = False  # 标记为隐藏任务栏
+    main_window.ui.checkBox_show_taskbar.setChecked(taskbar_status)
+
+
+def show_taskbar():
+    global taskbar_status
+
+    # 获取任务栏窗口的句柄
+    taskbar_hwnd = win32gui.FindWindow("Shell_traywnd", None)
+
+    # 恢复任务栏
+    win32gui.ShowWindow(taskbar_hwnd, win32con.SW_SHOW)
+    taskbar_status = True  # 标记为显示任务栏
+
+
+def hide_taskbar():
+    global taskbar_status
+
+    # 获取任务栏窗口的句柄
+    taskbar_hwnd = win32gui.FindWindow("Shell_traywnd", None)
+
+    # 隐藏任务栏
+    win32gui.ShowWindow(taskbar_hwnd, win32con.SW_HIDE)
+    taskbar_status = False  # 标记为隐藏任务栏
+
+
+def toggle_taskbar_rec(main_window):
+    global taskbar_status
+
+    if taskbar_status:
+        hide_taskbar_rec(main_window)
+    else:
+        show_taskbar_rec(main_window)
+
+
+# def special_toggle_taskbar(*text):
+#     if text[0][:5] == '显示任务栏':
+#         # print('翻转前的状态为', taskbar_status)
+#         toggle_taskbar()
+#         print('翻转后的状态为', taskbar_status)
+def special_toggle_taskbar_rec(text, main_window):
+    if text[:5] == '显示任务栏':
+        toggle_taskbar_rec(main_window)
+        print('翻转后的状态为', taskbar_status)
+
+
+def tray_hide_taskbar_rec(main_window):
+    main_window.ui.checkBox_show_taskbar.setChecked(False)
+    hide_taskbar_rec(main_window)
+
+
+def night_mode():
+    wallpaper_functions('save')
+    set_black_wallpaper()
+    hide_taskbar()
+
+
+def restore_mode():
     # 在新线程中执行还原壁纸操作
-    WallpaperFun('restore')
-# if __name__ == '__main__':
-#     WallpaperFun('save')  # 保存当前壁纸
-#     SetBlackWallpaper()  # 设置黑色背景
-#     time.sleep(5)
-#     WallpaperFun('restore')
+    show_taskbar()
+    wallpaper_functions('restore')

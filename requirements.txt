@@ -1,2 +1,2 @@
 pyside2
-pypiwin32
+pywin32
