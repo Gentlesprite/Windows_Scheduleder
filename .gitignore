@@ -1,0 +1,8 @@
+# ignore folders
+.idea/
+venv/
+__pycache__/
+# ignore files
+*.exe
+*.pyc
+
