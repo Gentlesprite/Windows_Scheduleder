@@ -1,19 +1,21 @@
-# -*-coding:utf-8-*-
-# 标准库导入
-import os
+# coding=UTF-8
+# Author:Gentlesprite
+# Software:PyCharm
+# Time:2025/2/23 12:15
+# File:main.py
 import sys
-import ctypes
+import subprocess
 import traceback
 import threading
+import logging
 from datetime import datetime, timedelta
 
-# 第三方库导入
 from PySide2.QtCore import Qt, QTimer
 from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import QApplication, QSystemTrayIcon, QMenu, QAction
 
 from module.ui import *
-from module.black_mode import toggle_taskbar_rec, restore_mode, tray_hide_taskbar_rec, night_mode, show_taskbar_rec
+from module.black_mode import restore_mode, night_mode
 
 
 class MainWindow(QMainWindow):
@@ -59,20 +61,26 @@ class MainWindow(QMainWindow):
         self.ui.checkBox_auto_keep_top.stateChanged.connect(self.updateCheckBoxState)
         self.ui.checkBox_close_windows_tips.stateChanged.connect(self.updateCheckBoxState)
         self.ui.checkBox_night_mode.stateChanged.connect(self.updateCheckBoxState)
-        self.ui.checkBox_show_taskbar.stateChanged.connect(self.test)
+        self.ui.checkBox_show_taskbar.stateChanged.connect(self.toggleTaskbar)
 
-    def test(self):
-        toggle_taskbar_rec(self)
+    def toggleTaskbar(self):
+        if not self.tray_show_taskbar.isChecked() and self.ui.checkBox_show_taskbar.isChecked():
+            self.tray_show_taskbar.setChecked(True)
+        toggle_taskbar()
 
-    # 退出
     def softwareExit(self):
         try:
             self.close()
-        except:
-            pass
+        except Exception as e:
+            logging.error(f"关闭窗口时出现异常：{e}")
+            logging.error(traceback.format_exc())
         finally:
-            restore_mode()
-            sys.exit()
+            try:
+                restore_mode()  # 退出软件进行恢复操作,以免对用户造成不必要麻烦
+            except NameError:
+                print("当前无需执行恢复操作")  # 处理对软件打开没有任何操作就关闭软件的报错情况
+            finally:
+                sys.exit()
 
     # 最小化
     def softwareMinisize(self):
@@ -93,35 +101,37 @@ class MainWindow(QMainWindow):
         self.ui.checkBox_close_windows_tips.setChecked(True)
         self.ui.checkBox_show_taskbar.setChecked(True)
         self.tray_complex = {}
-        self.subaction1 = QAction('夜间模式', self, checkable=True, data=self.ui.checkBox_night_mode)
-        self.tray_complex['夜间模式'] = self.subaction1
+        self.tray_night_mode = QAction('夜间模式', self, checkable=True, data=self.ui.checkBox_night_mode)
+        self.tray_complex['夜间模式'] = self.tray_night_mode
 
-        self.subaction2 = QAction('移至右上置顶', self, checkable=True, data=self.ui.checkBox_auto_keep_top)
-        self.tray_complex["移至右上置顶"] = self.subaction2
+        self.tray_auto_keep_top = QAction('移至右上置顶', self, checkable=True, data=self.ui.checkBox_auto_keep_top)
+        self.tray_complex["移至右上置顶"] = self.tray_auto_keep_top
 
-        self.subaction3 = QAction('显示任务栏', self, checkable=True, data=self.ui.checkBox_show_taskbar)
-        self.tray_complex['显示任务栏'] = self.subaction3
+        self.tray_show_taskbar = QAction('显示任务栏', self, checkable=True, data=self.ui.checkBox_show_taskbar)
+        self.tray_complex['显示任务栏'] = self.tray_show_taskbar
 
-        self.subaction4 = QAction('关闭弹窗提示', self, checkable=True, data=self.ui.checkBox_close_windows_tips)
-        self.tray_complex['关闭弹窗提示'] = self.subaction4
+        self.tray_close_windows_tips = QAction('关闭弹窗提示', self, checkable=True,
+                                               data=self.ui.checkBox_close_windows_tips)
+        self.tray_complex['关闭弹窗提示'] = self.tray_close_windows_tips
 
         # 初始化sub状态
-        self.subaction1.setChecked(True)
-        self.subaction2.setChecked(True)
-        self.subaction3.setChecked(True)
-        self.subaction4.setChecked(True)
+        self.tray_night_mode.setChecked(True)
+        self.tray_auto_keep_top.setChecked(True)
+        self.tray_show_taskbar.setChecked(True)
+        self.tray_close_windows_tips.setChecked(True)
 
         # 绑定菜单动作的 `triggered` 信号
-        self.subaction1.triggered.connect(self.updateCheckBoxState)
-        self.subaction2.triggered.connect(self.updateCheckBoxState)
-        self.subaction3.triggered.connect(lambda: (tray_hide_taskbar_rec(self)))
-        self.subaction4.triggered.connect(self.updateCheckBoxState)
+        self.tray_night_mode.triggered.connect(self.updateCheckBoxState)
+        self.tray_auto_keep_top.triggered.connect(self.updateCheckBoxState)
+        self.tray_show_taskbar.triggered.connect(
+            lambda: (special_hide_taskbar(self)))
+        self.tray_close_windows_tips.triggered.connect(self.updateCheckBoxState)
         # 创建菜单项并添加到菜单
         sub_menu = QMenu("Sub Menu")
-        sub_menu.addAction(self.subaction1)
-        sub_menu.addAction(self.subaction2)
-        sub_menu.addAction(self.subaction3)
-        sub_menu.addAction(self.subaction4)
+        sub_menu.addAction(self.tray_night_mode)
+        sub_menu.addAction(self.tray_auto_keep_top)
+        sub_menu.addAction(self.tray_show_taskbar)
+        sub_menu.addAction(self.tray_close_windows_tips)
 
         checkbox_action = QAction("配置选项", self, checkable=True)
         checkbox_action.setMenu(sub_menu)
@@ -301,7 +311,7 @@ class MainWindow(QMainWindow):
         shutdown_time_str = shutdown_time.strftime('%Y/%m/%d %H:%M:%S')
         shutdown_min = self.changeTime() // 60
         msg = f"当前时间：{current_time_str}\n预计关机时间：{shutdown_time_str}\n剩余时间：{shutdown_min}分钟"
-        os.system(f'shutdown -s -t {self.changeTime()}')
+        subprocess.call(f'shutdown -s -t {self.changeTime()}', shell=True)
         if not self.ui.checkBox_close_windows_tips.isChecked():
             QMessageBox.information(self, '提示', msg)
         self.beginTimer()
@@ -311,15 +321,15 @@ class MainWindow(QMainWindow):
                 self.softwareKeepTopMode()  # 切换为置顶状态
         if self.ui.checkBox_night_mode.isChecked():
             night_mode()
-        if not self.ui.checkBox_show_taskbar.isChecked():  # 任务栏隐藏
-            toggle_taskbar_rec(self)
+        if self.ui.checkBox_show_taskbar.isChecked():  # 任务栏隐藏
             self.ui.checkBox_show_taskbar.setChecked(False)
+            toggle_taskbar()
 
         return 1
 
     def cancelShutdownTask(self):
         try:
-            if os.system('shutdown -a') == 0:
+            if subprocess.call('shutdown -a', shell=True) == 0:
                 msg_cancel_task = '关机任务已取消!'
                 if not self.ui.checkBox_close_windows_tips.isChecked():
                     QMessageBox.information(self, f'提示', msg_cancel_task)
@@ -331,7 +341,7 @@ class MainWindow(QMainWindow):
                 if not self.ui.checkBox_show_taskbar.isChecked():
                     if not self.ui.checkBox_show_taskbar.checkState():
                         self.ui.checkBox_show_taskbar.setChecked(True)
-                    show_taskbar_rec(self)
+                    show_taskbar()
 
                 # 在新线程中执行还原壁纸操作
                 restore_thread = threading.Thread(target=restore_mode)
@@ -361,13 +371,6 @@ class MainWindow(QMainWindow):
         remaining_sec = int(remaining_time % 60)
         msg = f"当前时间：{current_time_str}\n预计关机时间：{shutdown_time_str}\n剩余时间：{remaining_min}分{remaining_sec}秒"
         self.ui.label.setText(msg)
-
-    def restoreWindow(self):
-        """
-        恢复窗口到默认位置
-        """
-        x, y = self.default_pos
-        self.setGeometry(x, y, self.width(), self.height())
 
 
 if __name__ == '__main__':
