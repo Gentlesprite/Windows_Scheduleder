@@ -7,7 +7,7 @@ import os
 
 main = 'main.py'
 icon_path = r'module\resources\logo.ico'
-upx_dir = r'D:\env\upx\upx-4.2.4-win64'  # 替换为自己的upx目录。
+upx_dir = r'module\bin\upx.exe'
 version_file = os.path.join(os.getcwd(), 'file_version_info.txt')
 if __name__ == '__main__':
     try:
